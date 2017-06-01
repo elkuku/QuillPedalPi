@@ -1,3 +1,9 @@
 body {
     padding-top: 50px;
 }
+
+.gauge-speed {
+    text-align: center;
+    font-family: monospace;
+    font-size: 4em;
+}
