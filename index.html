@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="assets/img/bicycle-18072/favicon.ico">
 
     <title>PedalMaster</title>
 
@@ -45,20 +45,19 @@
     </div>
 </nav>
 -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-6 gauge-speed" id="gauge-speed">88</div>
-        <div class="col-xs-6">
-            <div class="row">
-                <div class="col-xs-4">
-                    <div class="btn btn-default" id="testThis">test</div>
-                </div>
-                <div class="col-xs-4"></div>
-                <div class="col-xs-4 text-right" id="dateTime"></div>
-            </div>
-        </div>
-    </div>
-</div>
+<table width="100%">
+    <tr>
+        <td id="gauge-speed" class="gauge-speed">00</td>
+        <td>
+            <div id="dateTime"></div>
+        </td>
+        <td>
+            <div class="btn btn-default" id="testThis">BW</div>
+            <div class="btn btn-default" id="closeThis">CC</div>
+
+        </td>
+    </tr>
+</table>
 
 <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
 <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
