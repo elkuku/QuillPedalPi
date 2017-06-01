@@ -1,0 +1,21 @@
+{
+  "name": "minicc-kuku",
+  "authors": [
+    "Nikolai Plath <der.el.kuku@gmail.com>"
+  ],
+  "description": "MiniCC KuKu Manager",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
