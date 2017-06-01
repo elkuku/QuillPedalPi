@@ -9,8 +9,12 @@ function setSpeed() {
 
 var refreshId = setInterval(dateTime, 1000);
 var refreshId2 = setInterval(setSpeed, 500);
+var dayMode = true;
+
+document.getElementById('dark-css').disabled = dayMode;
 
 $('#testThis').on('click', function(){
-    alert('HEY');
+    dayMode = !dayMode;
+    document.getElementById('dark-css').disabled = dayMode;
 });
 
