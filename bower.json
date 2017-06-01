@@ -1,12 +1,12 @@
 {
-  "name": "QuillPedalPi",
+  "name": "quillpedalpi",
   "authors": [
     "Nikolai Plath <der.el.kuku@gmail.com>"
   ],
   "description": "QuillPedalPi",
   "main": "",
   "license": "WTFPL",
-  "homepage": "",
+  "homepage": "https://github.com/elkuku/QuillPedalPi",
   "ignore": [
     "**/.*",
     "node_modules",
