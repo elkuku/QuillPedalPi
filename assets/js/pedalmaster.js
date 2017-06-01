@@ -18,3 +18,8 @@ $('#testThis').on('click', function(){
     document.getElementById('dark-css').disabled = dayMode;
 });
 
+$('#closeThis').on('click', function(){
+    window.open('', '_self', '');
+    window.close();
+});
+
