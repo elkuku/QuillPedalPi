@@ -39,9 +39,9 @@
         <td valign="top" class="text-center">
             <div id="panel-Travel">
                 <ul class="travel-list">
-                    <li>DST</li>
-                    <li>MXS</li>
-                    <li>AVS</li>
+                    <li>AVS <span id="dig-avs"></span> km/h</li>
+                    <li>MXS <span id="dig-mxs"></span> km/h</li>
+                    <li>DST <span id="dig-dst"></span> km</li>
                 </ul>
             </div>
             <div id="panel-Stopw">
@@ -59,7 +59,7 @@
                 </table>
             </div>
             <div id="panel-Cam">
-                []
+                <img src="assets/img/road.jpg"/>
             </div>
         </td>
     </tr>
@@ -73,9 +73,9 @@
         </td>
         <td class="text-right">
             <div id="buttons-Travel">
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="ayy"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="ayy1"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="ayy2"></div>
+                <div onclick="mxs = 0; measures = []" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
             </div>
             <div id="buttons-Stopw">
                 <div class="btn-group">
@@ -86,9 +86,9 @@
                 </div>
             </div>
             <div id="buttons-Cam">
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy1"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy2"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
             </div>
         </td>
     </tr>

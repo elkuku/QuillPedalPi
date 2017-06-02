@@ -16,6 +16,7 @@ div#mode {
 
 ul.travel-list {
     text-align: left;
+    list-style: none;
 }
 
 div.stopwatch {
