@@ -5,6 +5,7 @@ body {
 
 .btn-default {
     background-color: #0f0f0f;
+    border-color: #000;
 }
 
 .btn-default:hover {
