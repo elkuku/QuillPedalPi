@@ -5,5 +5,6 @@ body {
 .gauge-speed {
     text-align: center;
     font-family: monospace;
-    font-size: 7em;
+    font-size: 6em;
+    margin: 0;
 }
