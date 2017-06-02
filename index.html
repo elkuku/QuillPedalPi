@@ -23,17 +23,19 @@
 
 <table width="100%" border="0">
     <tr>
-        <td>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-log-out" id="closeThis"></div>
-        </td>
-        <td class="text-right">
-            <div id="mode" class="text-left"></div>
+        <td colspan="3" class="text-center">
+            <div class="pull-left">
+                <span id="mode" class="text-left"></span>
+            </div>
             <span id="dateTime">00:00:00</span>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-asterisk" id="testThis"></div>
+            <div class="pull-right">
+                <div class="btn btn-default btn-lg glyphicon glyphicon-asterisk" id="testThis"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-log-out" id="closeThis"></div>
+            </div>
         </td>
     </tr>
     <tr>
-        <td id="gauge-speed" class="gauge-speed" width="230px">
+        <td id="gauge-speed" class="gauge-speed" width="230px" onclick="changeMode()" rowspan="2">
             00
         </td>
         <td valign="top" class="text-center">
@@ -49,8 +51,11 @@
                     <tr>
                         <td width="80%" valign="top">
                             <div class="stopwatch"></div>
-                            <div onClick="stopwatch.clear();" class="btn btn-default btn-lg glyphicon glyphicon-tasks"></div>
+                            <div class="text-right">
 
+                            <div onClick="stopwatch.clear();"
+                                 class="btn btn-default btn-lg glyphicon glyphicon-tasks"></div>
+                            </div>
                         </td>
                         <td width="20%" class="text-left">
                             <ul class="results"></ul>
@@ -59,36 +64,27 @@
                 </table>
             </div>
             <div id="panel-Cam">
-                <img src="assets/img/road.jpg"/>
+                <img src="assets/img/road.jpg" width="290" height="190"/>
             </div>
         </td>
     </tr>
     <tr>
-        <td>
-            <div class="btn-group">
-            <div class="btn btn-default btn-lg glyphicon glyphicon-flash" onclick="switchMode('Travel')"></div>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-time" onclick="switchMode('Stopw')"></div>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-camera" onclick="switchMode('Cam')"></div>
-            </div>
-        </td>
-        <td class="text-right">
+        <td class="text-center">
             <div id="buttons-Travel">
                 <div onclick="mxs = 0; measures = []" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
                 <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
                 <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
             </div>
             <div id="buttons-Stopw">
-                <div class="btn-group">
                 <div onClick="stopwatch.start();" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
                 <div onClick="stopwatch.lap();" class="btn btn-default btn-lg glyphicon glyphicon-check"></div>
                 <div onClick="stopwatch.stop();" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
                 <div onClick="stopwatch.restart();" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
-                </div>
             </div>
             <div id="buttons-Cam">
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-camera"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-facetime-video"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
             </div>
         </td>
     </tr>

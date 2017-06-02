@@ -3,7 +3,7 @@ body {
     font-family: monospace;
 }
 
-div#mode {
+#mode {
     float: left;
     font-size: 0.8em;
     color: #2b669a;
@@ -12,6 +12,7 @@ div#mode {
 .gauge-speed {
     text-align: center;
     font-size: 6.5em;
+    cursor: none;
 }
 
 ul.travel-list {

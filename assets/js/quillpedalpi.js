@@ -32,8 +32,10 @@ let dayMode = false;
 let mxs = 0;
 let measures = [];
 
+let mode = 0, modes = ['Travel', 'Stopw', 'Cam'], icons = ['send', 'time', 'camera'];
+
 document.getElementById('dark-css').disabled = dayMode;
-switchMode('Travel');
+switchMode(0);
 
 $('#testThis').on('click', function () {
     dayMode = !dayMode;
@@ -46,14 +48,22 @@ $('#closeThis').on('click', function () {
 });
 
 function switchMode(mode) {
-    $('#panel-Travel').hide();
-    $('#buttons-Travel').hide();
-    $('#panel-Stopw').hide();
-    $('#buttons-Stopw').hide();
-    $('#panel-Cam').hide();
-    $('#buttons-Cam').hide();
+    for (let i = 0; i < modes.length; i++) {
+        $('#panel-' + modes[i]).hide();
+        $('#buttons-' + modes[i]).hide();
+    }
 
-    $('#panel-' + mode).show();
-    $('#buttons-' + mode).show();
-    $('#mode').html(mode);
+    $('#panel-' + modes[mode]).show();
+    $('#buttons-' + modes[mode]).show();
+    $('#mode').attr('class', 'glyphicon glyphicon-' + icons[mode]);
+}
+
+function changeMode() {
+    if (mode == modes.length - 1) {
+        mode = 0;
+    } else {
+        mode += 1;
+    }
+
+    switchMode(mode);
 }
