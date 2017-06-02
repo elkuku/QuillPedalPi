@@ -41,9 +41,9 @@
         <td valign="top" class="text-center">
             <div id="panel-Travel">
                 <ul class="travel-list">
-                    <li>AVS <span id="dig-avs"></span> km/h</li>
-                    <li>MXS <span id="dig-mxs"></span> km/h</li>
-                    <li>DST <span id="dig-dst"></span> km</li>
+                    <li><span class="glyphicon glyphicon-ban-circle"></span> <span id="dig-avs">00.00</span> <span class="unit">km/h</span></li>
+                    <li><span class="glyphicon glyphicon-ok-circle"></span> <span id="dig-mxs">00</span> <span class="unit">km/h</span></li>
+                    <li><span class="glyphicon glyphicon-send"></span> <span id="dig-dst">000.00</span> <span class="unit">km/h</span></li>
                 </ul>
             </div>
             <div id="panel-Stopw">
@@ -77,7 +77,7 @@
             </div>
             <div id="buttons-Stopw">
                 <div onClick="stopwatch.start();" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
-                <div onClick="stopwatch.lap();" class="btn btn-default btn-lg glyphicon glyphicon-check"></div>
+                <div onClick="stopwatch.lap();" class="btn btn-default btn-lg glyphicon glyphicon-flag"></div>
                 <div onClick="stopwatch.stop();" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
                 <div onClick="stopwatch.restart();" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
             </div>

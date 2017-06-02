@@ -15,6 +15,9 @@ body {
     cursor: none;
 }
 
+.unit {
+    font-size: 0.7em;
+}
 ul.travel-list {
     text-align: left;
     list-style: none;
