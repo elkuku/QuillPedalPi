@@ -27,8 +27,9 @@
             <div class="btn btn-default btn-lg glyphicon glyphicon-log-out" id="closeThis"></div>
         </td>
         <td class="text-right">
+            <div id="mode" class="text-left"></div>
+            <span id="dateTime">00:00:00</span>
             <div class="btn btn-default btn-lg glyphicon glyphicon-asterisk" id="testThis"></div>
-
         </td>
     </tr>
     <tr>
@@ -36,19 +37,54 @@
             00
         </td>
         <td valign="top" class="text-center">
-            <div id="dateTime">00:00:00</div>
+            <div id="panel-Travel">
+                <ul class="travel-list">
+                    <li>DST</li>
+                    <li>MXS</li>
+                    <li>AVS</li>
+                </ul>
+            </div>
+            <div id="panel-Stopwatch">
+                <table width="100%" border="0">
+                    <tr>
+                        <td width="80%" valign="top">
+                            <div class="stopwatch"></div>
+                        </td>
+                        <td width="20%" class="text-left">
+                            <ul class="results"></ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="panel-Camera">
+                []
+            </div>
         </td>
     </tr>
     <tr>
         <td>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-alert" id="xx"></div>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-alert" id="xx1"></div>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-alert" id="xx2"></div>
+            <div class="btn btn-default btn-lg glyphicon glyphicon-flash" onclick="switchMode('Travel')"></div>
+            <div class="btn btn-default btn-lg glyphicon glyphicon-time" onclick="switchMode('Stopwatch')"></div>
+            <div class="btn btn-default btn-lg glyphicon glyphicon-camera" onclick="switchMode('Camera')"></div>
         </td>
         <td class="text-right">
-            <div class="btn btn-default btn-lg glyphicon glyphicon-alert" id="yy"></div>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-alert" id="yy1"></div>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-alert" id="yy2"></div>
+            <div id="buttons-Travel">
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="ayy"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="ayy1"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="ayy2"></div>
+            </div>
+            <div id="buttons-Stopwatch">
+                <div onClick="stopwatch.start();" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
+                <div onClick="stopwatch.lap();" class="btn btn-default btn-lg glyphicon glyphicon-check"></div>
+                <div onClick="stopwatch.stop();" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
+                <div onClick="stopwatch.restart();" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
+                <div onClick="stopwatch.clear();" class="btn btn-default btn-lg glyphicon glyphicon-tasks"></div>
+            </div>
+            <div id="buttons-Camera">
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy1"></div>
+                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy2"></div>
+            </div>
         </td>
     </tr>
 </table>
@@ -56,6 +92,7 @@
 <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
 <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="assets/js/quillpedalpi.js"></script>
+<script src="assets/js/stopwatch.js"></script>
 </body>
 </html>
 

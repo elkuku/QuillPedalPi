@@ -3,15 +3,19 @@ function dateTime() {
 }
 
 function setSpeed() {
+    // @todo dummy...
     var speed = Math.floor((Math.random() * 40) + 1);
+
     $('#gauge-speed').html(speed);
 }
 
 var refreshId = setInterval(dateTime, 1000);
 var refreshId2 = setInterval(setSpeed, 500);
-var dayMode = true;
+
+var dayMode = false;
 
 document.getElementById('dark-css').disabled = dayMode;
+switchMode('Travel');
 
 $('#testThis').on('click', function(){
     dayMode = !dayMode;
@@ -23,3 +27,15 @@ $('#closeThis').on('click', function(){
     window.close();
 });
 
+function switchMode(mode) {
+    $('#panel-Travel').hide();
+    $('#buttons-Travel').hide();
+    $('#panel-Stopwatch').hide();
+    $('#buttons-Stopwatch').hide();
+    $('#panel-Camera').hide();
+    $('#buttons-Camera').hide();
+
+    $('#panel-'+mode).show();
+    $('#buttons-'+mode).show();
+    $('#mode').html(mode);
+}
