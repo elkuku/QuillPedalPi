@@ -63,9 +63,11 @@
     </tr>
     <tr>
         <td>
+            <div class="btn-group">
             <div class="btn btn-default btn-lg glyphicon glyphicon-flash" onclick="switchMode('Travel')"></div>
             <div class="btn btn-default btn-lg glyphicon glyphicon-time" onclick="switchMode('Stopwatch')"></div>
             <div class="btn btn-default btn-lg glyphicon glyphicon-camera" onclick="switchMode('Camera')"></div>
+            </div>
         </td>
         <td class="text-right">
             <div id="buttons-Travel">
@@ -74,11 +76,13 @@
                 <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="ayy2"></div>
             </div>
             <div id="buttons-Stopwatch">
+                <div class="btn-group">
                 <div onClick="stopwatch.start();" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
                 <div onClick="stopwatch.lap();" class="btn btn-default btn-lg glyphicon glyphicon-check"></div>
                 <div onClick="stopwatch.stop();" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
                 <div onClick="stopwatch.restart();" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
                 <div onClick="stopwatch.clear();" class="btn btn-default btn-lg glyphicon glyphicon-tasks"></div>
+                </div>
             </div>
             <div id="buttons-Camera">
                 <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy"></div>
