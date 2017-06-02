@@ -12,13 +12,17 @@ function setSpeed() {
         mxs = speed;
     }
 
-    let sum = 0;
+    let sum = 0, length = measures.length;
 
-    for (let i = 0; i < measures.length; i++) {
+    for (let i = 0; i < length; i++) {
         sum += measures[i];
     }
 
-    let avs = sum / measures.length;
+    if (length > 1000) {
+        measures = [];
+    }
+
+    let avs = sum / length;
 
     $('#gauge-speed').html(speed);
     $('#dig-avs').html(avs.toFixed(2));
@@ -28,11 +32,12 @@ function setSpeed() {
 let refreshId = setInterval(dateTime, 1000);
 let refreshId2 = setInterval(setSpeed, 500);
 
-let dayMode = false;
-let mxs = 0;
-let measures = [];
-
-let mode = 0, modes = ['Travel', 'Stopw', 'Cam'], icons = ['send', 'time', 'camera'];
+let dayMode = false,
+    mxs = 0,
+    measures = [],
+    mode = 0,
+    modes = ['Travel', 'Stopw', 'Cam'],
+    icons = ['send', 'time', 'camera'];
 
 document.getElementById('dark-css').disabled = dayMode;
 switchMode(0);
@@ -51,11 +56,12 @@ function switchMode(mode) {
     for (let i = 0; i < modes.length; i++) {
         $('#panel-' + modes[i]).hide();
         $('#buttons-' + modes[i]).hide();
+        $('#mode-' + i).removeClass('glow');
     }
 
     $('#panel-' + modes[mode]).show();
     $('#buttons-' + modes[mode]).show();
-    $('#mode').attr('class', 'glyphicon glyphicon-' + icons[mode]);
+    $('#mode-' + mode).addClass('glow');
 }
 
 function changeMode() {

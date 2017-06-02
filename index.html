@@ -25,6 +25,9 @@
     <tr>
         <td colspan="3" class="text-center">
             <div class="pull-left">
+                <span class="glyphicon glyphicon-send" id="mode-0" onmousedown="switchMode(0)"></span>
+                <span class="glyphicon glyphicon-time" id="mode-1" onmousedown="switchMode(1)"></span>
+                <span class="glyphicon glyphicon-camera" id="mode-2" onmousedown="switchMode(2)"></span>
                 <span id="mode" class="text-left"></span>
             </div>
             <span id="dateTime">00:00:00</span>
@@ -63,8 +66,8 @@
                     </tr>
                 </table>
             </div>
-            <div id="panel-Cam">
-                <img src="assets/img/road.jpg" width="290" height="190"/>
+            <div id="panel-Cam" class="center-block">
+                <img src="assets/img/road.jpg" width="230" height="170"/>
             </div>
         </td>
     </tr>

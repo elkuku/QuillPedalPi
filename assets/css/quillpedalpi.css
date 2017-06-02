@@ -9,6 +9,10 @@ body {
     color: #2b669a;
 }
 
+.glow {
+    color: #2b669a;
+}
+
 .gauge-speed {
     text-align: center;
     font-size: 6.5em;
