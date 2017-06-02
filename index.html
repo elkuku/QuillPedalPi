@@ -44,11 +44,13 @@
                     <li>AVS</li>
                 </ul>
             </div>
-            <div id="panel-Stopwatch">
+            <div id="panel-Stopw">
                 <table width="100%" border="0">
                     <tr>
                         <td width="80%" valign="top">
                             <div class="stopwatch"></div>
+                            <div onClick="stopwatch.clear();" class="btn btn-default btn-lg glyphicon glyphicon-tasks"></div>
+
                         </td>
                         <td width="20%" class="text-left">
                             <ul class="results"></ul>
@@ -56,7 +58,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="panel-Camera">
+            <div id="panel-Cam">
                 []
             </div>
         </td>
@@ -65,8 +67,8 @@
         <td>
             <div class="btn-group">
             <div class="btn btn-default btn-lg glyphicon glyphicon-flash" onclick="switchMode('Travel')"></div>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-time" onclick="switchMode('Stopwatch')"></div>
-            <div class="btn btn-default btn-lg glyphicon glyphicon-camera" onclick="switchMode('Camera')"></div>
+            <div class="btn btn-default btn-lg glyphicon glyphicon-time" onclick="switchMode('Stopw')"></div>
+            <div class="btn btn-default btn-lg glyphicon glyphicon-camera" onclick="switchMode('Cam')"></div>
             </div>
         </td>
         <td class="text-right">
@@ -75,16 +77,15 @@
                 <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="ayy1"></div>
                 <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="ayy2"></div>
             </div>
-            <div id="buttons-Stopwatch">
+            <div id="buttons-Stopw">
                 <div class="btn-group">
                 <div onClick="stopwatch.start();" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
                 <div onClick="stopwatch.lap();" class="btn btn-default btn-lg glyphicon glyphicon-check"></div>
                 <div onClick="stopwatch.stop();" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
                 <div onClick="stopwatch.restart();" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
-                <div onClick="stopwatch.clear();" class="btn btn-default btn-lg glyphicon glyphicon-tasks"></div>
                 </div>
             </div>
-            <div id="buttons-Camera">
+            <div id="buttons-Cam">
                 <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy"></div>
                 <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy1"></div>
                 <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign" id="yy2"></div>

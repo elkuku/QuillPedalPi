@@ -30,10 +30,10 @@ $('#closeThis').on('click', function(){
 function switchMode(mode) {
     $('#panel-Travel').hide();
     $('#buttons-Travel').hide();
-    $('#panel-Stopwatch').hide();
-    $('#buttons-Stopwatch').hide();
-    $('#panel-Camera').hide();
-    $('#buttons-Camera').hide();
+    $('#panel-Stopw').hide();
+    $('#buttons-Stopw').hide();
+    $('#panel-Cam').hide();
+    $('#buttons-Cam').hide();
 
     $('#panel-'+mode).show();
     $('#buttons-'+mode).show();
