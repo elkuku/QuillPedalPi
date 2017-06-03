@@ -57,7 +57,7 @@ class Stopwatch {
     }
 
     calculate(timestamp) {
-        var diff = timestamp - this.time;
+        let diff = timestamp - this.time;
         // Hundredths of a second are 100 ms
         this.times[2] += diff / 10;
         // Seconds are 100 hundredths of a second
@@ -85,7 +85,7 @@ ${pad0(Math.floor(times[2]), 2)}`;
 }
 
 function pad0(value, count) {
-    var result = value.toString();
+    let result = value.toString();
     for (; result.length < count; --count)
         result = '0' + result;
     return result;
@@ -98,4 +98,5 @@ function clearChildren(node) {
 
 let stopwatch = new Stopwatch(
     document.querySelector('.stopwatch'),
-    document.querySelector('.results'));
+    document.querySelector('.results')
+);

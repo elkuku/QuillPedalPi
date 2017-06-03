@@ -25,10 +25,9 @@
     <tr>
         <td colspan="3" class="text-center">
             <div class="pull-left">
-                <span class="glyphicon glyphicon-send" id="mode-0" onmousedown="switchMode(0)"></span>
-                <span class="glyphicon glyphicon-time" id="mode-1" onmousedown="switchMode(1)"></span>
-                <span class="glyphicon glyphicon-camera" id="mode-2" onmousedown="switchMode(2)"></span>
-                <span id="mode" class="text-left"></span>
+                <span class="glyphicon glyphicon-send" id="mode-0" onmousedown="qpp.switchMode(0)"></span>
+                <span class="glyphicon glyphicon-time" id="mode-1" onmousedown="qpp.switchMode(1)"></span>
+                <span class="glyphicon glyphicon-camera" id="mode-2" onmousedown="qpp.switchMode(2)"></span>
             </div>
             <span id="dateTime">00:00:00</span>
             <div class="pull-right">
@@ -39,7 +38,7 @@
         </td>
     </tr>
     <tr>
-        <td id="gauge-speed" class="gauge-speed" width="230px" onmousedown="changeMode()" rowspan="2">
+        <td id="gauge-speed" class="gauge-speed" width="230px" onmousedown="qpp.changeMode()" rowspan="2">
             00
         </td>
         <td valign="top" class="text-center">
@@ -47,7 +46,7 @@
                 <ul class="travel-list">
                     <li><span class="glyphicon glyphicon-ban-circle"></span> <span id="dig-avs">00.00</span> <span class="unit">km/h</span></li>
                     <li><span class="glyphicon glyphicon-ok-circle"></span> <span id="dig-mxs">00</span> <span class="unit">km/h</span></li>
-                    <li><span class="glyphicon glyphicon-send"></span> <span id="dig-dst">000.00</span> <span class="unit">km/h</span></li>
+                    <li><span class="glyphicon glyphicon-send"></span> <span id="dig-dst">000.00</span> <span class="unit">km</span></li>
                 </ul>
             </div>
             <div id="panel-Stopw">
@@ -75,9 +74,9 @@
     <tr>
         <td class="text-center">
             <div id="buttons-Travel">
-                <div onclick="mxs = 0; measures = []" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-question-sign"></div>
+                <div onClick="qpp.start()" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
+                <div onClick="qpp.stop()" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
+                <div onclick="qpp.reset()" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
             </div>
             <div id="buttons-Stopw">
                 <div onClick="stopwatch.start();" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
