@@ -15,20 +15,19 @@ class QuillPedalPi {
         this.dspMxs = dspMxs;
         this.dspDst = dspDst;
 
+        // Chart
         this.line1 = new TimeSeries();
         this.line2 = new TimeSeries();
         this.speedChart = new SmoothieChart();
         this.speedChart.streamTo(document.getElementById('speed-chart'), 500);
-        this.speedChart.addTimeSeries(this.line1);
-        this.speedChart.addTimeSeries(this.line2);
+        this.speedChart.addTimeSeries(this.line1,
+            {strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0.4)', lineWidth: 1});
+        this.speedChart.addTimeSeries(this.line2,
+            {strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(255, 0, 255, 0.3)', lineWidth: 1});
 
-
-// Data
-// Add a random value to each line every second
-
-// Add to SmoothieChart
-
+        // The clock
         setInterval(this.setTime.bind(null, this.dspTime), 1000);
+
         this.switchMode(0);
     }
 
@@ -46,7 +45,7 @@ class QuillPedalPi {
 
     start() {
         if (!this.running) {
-            this.timerId = setInterval(this.setSpeed.bind(null, this), 500);
+            this.timerId = setInterval(this.update.bind(null, this), 500);
             this.running = true;
         }
     }
@@ -60,7 +59,7 @@ class QuillPedalPi {
         dsp.html(new Date().toLocaleTimeString());
     }
 
-    setSpeed(o) {
+    update(o) {
         // @todo dummy...
         let speed = Math.floor((Math.random() * 40) + 1);
 
@@ -93,7 +92,6 @@ class QuillPedalPi {
 
         o.line1.append(new Date().getTime(), speed);
         o.line2.append(new Date().getTime(), o.avs);
-
     }
 
     switchMode(mode) {
@@ -120,7 +118,6 @@ class QuillPedalPi {
     }
 }
 
-
 //------
 
 let dayMode = false;
@@ -146,7 +143,3 @@ let qpp = new QuillPedalPi(
     $('#dig-dst')
     )
 ;
-
-//-----
-
-
