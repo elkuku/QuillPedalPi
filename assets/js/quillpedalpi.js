@@ -16,14 +16,27 @@ class QuillPedalPi {
         this.dspDst = dspDst;
 
         // Chart
+        // http://smoothiecharts.org/builder
         this.line1 = new TimeSeries();
         this.line2 = new TimeSeries();
-        this.speedChart = new SmoothieChart();
+
+        this.speedChart = new SmoothieChart({
+            millisPerPixel: 72,
+            grid: {
+                fillStyle: 'transparent',
+                strokeStyle: 'transparent',
+                millisPerLine: 10000,
+                verticalSections: 0,
+                borderVisible: false
+            },
+            labels: {fillStyle:'#787474', precision: 0}
+        });
+
         this.speedChart.streamTo(document.getElementById('speed-chart'), 500);
         this.speedChart.addTimeSeries(this.line1,
-            {strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0.4)', lineWidth: 1});
+            {strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(177,223,170,0.30)', lineWidth: 1});
         this.speedChart.addTimeSeries(this.line2,
-            {strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(255, 0, 255, 0.3)', lineWidth: 1});
+            {strokeStyle: '#002cff', fillStyle: 'rgba(142,142,210,0.30)', lineWidth: 1});
 
         // The clock
         setInterval(this.setTime.bind(null, this.dspTime), 1000);
