@@ -15,6 +15,19 @@ class QuillPedalPi {
         this.dspMxs = dspMxs;
         this.dspDst = dspDst;
 
+        this.line1 = new TimeSeries();
+        this.line2 = new TimeSeries();
+        this.speedChart = new SmoothieChart();
+        this.speedChart.streamTo(document.getElementById('speed-chart'), 500);
+        this.speedChart.addTimeSeries(this.line1);
+        this.speedChart.addTimeSeries(this.line2);
+
+
+// Data
+// Add a random value to each line every second
+
+// Add to SmoothieChart
+
         setInterval(this.setTime.bind(null, this.dspTime), 1000);
         this.switchMode(0);
     }
@@ -57,6 +70,10 @@ class QuillPedalPi {
             o.mxs = speed;
         }
 
+        if (speed > 0) {
+            o.dst += speed / 7200
+        }
+
         let sum = 0, length = o.measures.length;
 
         for (let i = 0; i < length; i++) {
@@ -72,6 +89,11 @@ class QuillPedalPi {
         o.dspSpeed.html(speed);
         o.dspAvs.html(o.avs.toFixed(2));
         o.dspMxs.html(o.mxs);
+        o.dspDst.html(o.dst.toFixed(3));
+
+        o.line1.append(new Date().getTime(), speed);
+        o.line2.append(new Date().getTime(), o.avs);
+
     }
 
     switchMode(mode) {
@@ -124,3 +146,7 @@ let qpp = new QuillPedalPi(
     $('#dig-dst')
     )
 ;
+
+//-----
+
+

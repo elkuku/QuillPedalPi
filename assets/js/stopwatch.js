@@ -36,12 +36,9 @@ class Stopwatch {
     }
 
     restart() {
-        if (!this.time) this.time = performance.now();
-        if (!this.running) {
-            this.running = true;
-            requestAnimationFrame(this.step.bind(this));
-        }
+        this.stop();
         this.reset();
+        this.print();
     }
 
     clear() {
