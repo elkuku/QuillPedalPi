@@ -28,7 +28,7 @@ class QuillPedalPi {
         this.dspSpeed.html('00');
         this.dspAvs.html('00.00');
         this.dspMxs.html('00');
-        this.dspDst.html('000.00');
+        this.dspDst.html('000.000');
     }
 
     start() {
