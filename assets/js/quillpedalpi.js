@@ -73,8 +73,7 @@ class QuillPedalPi {
     }
 
     update(o) {
-        // @todo dummy...
-        let speed = Math.floor((Math.random() * 40) + 1);
+        let speed = o.fakeSpeed(o);
 
         o.measures.push(speed);
 
@@ -128,6 +127,29 @@ class QuillPedalPi {
         }
 
         this.switchMode(this.mode);
+    }
+
+    fakeSpeed(o) {
+        // @todo dummy...
+        let op = Math.floor(Math.random() * 2);
+        let add = Math.floor(Math.random() * 3);
+        let speed = 15;
+
+        if (o.measures.length) {
+            speed = o.measures[o.measures.length - 1];
+        }
+
+        speed = op ? speed + add : speed - add;
+
+        if (speed < 0) {
+            speed = 0;
+        }
+
+        if (speed > 40) {
+            speed = 40;
+        }
+
+        return speed;
     }
 }
 
