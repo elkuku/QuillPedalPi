@@ -39,3 +39,15 @@ ul.results {
     margin: 0;
     padding: 0;
 }
+
+.bpm-low {
+    color: #2b669a;
+}
+
+.bpm-mid {
+    color: #52a64b;
+}
+
+.bpm-high {
+    color: #af581f;
+}

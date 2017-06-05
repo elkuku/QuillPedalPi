@@ -1,5 +1,5 @@
 class QuillPedalPi {
-    constructor(modes, dspTime, dspSpeed, dspAvs, dspMxs, dspDst) {
+    constructor(modes, dspTime, dspSpeed, dspAvs, dspMxs, dspDst, dspBpm, iconBpm) {
         this.running = false;
         this.timerId = null;
         this.measures = [];
@@ -14,6 +14,10 @@ class QuillPedalPi {
         this.dspAvs = dspAvs;
         this.dspMxs = dspMxs;
         this.dspDst = dspDst;
+        this.dspBpm = dspBpm;
+        this.iconBpm = iconBpm;
+
+        this.bpm = 150;
 
         // Chart
         // http://smoothiecharts.org/builder
@@ -37,6 +41,28 @@ class QuillPedalPi {
             {strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(177,223,170,0.30)', lineWidth: 1});
         this.speedChart.addTimeSeries(this.line2,
             {strokeStyle: '#002cff', fillStyle: 'rgba(142,142,210,0.30)', lineWidth: 1});
+
+        // Heart beat chart
+        this.heartbeatChart = new SmoothieChart({
+            grid: {
+                fillStyle: 'transparent',
+                strokeStyle: 'transparent',
+                verticalSections: 0,
+                borderVisible: false
+            },
+            labels: {fillStyle:'#787474', precision: 0}
+        });
+
+        this.lineHeartbeat = new TimeSeries();
+        this.lineHeartbeatLow = new TimeSeries();
+        this.lineHeartbeatMid = new TimeSeries();
+        this.lineHeartbeatHigh = new TimeSeries();
+
+        this.heartbeatChart.streamTo(document.getElementById('heartbeat-chart'), 500);
+        this.heartbeatChart.addTimeSeries(this.lineHeartbeat,  {lineWidth:2,strokeStyle:'#00ff00', fillStyle: 'rgba(177,223,170,0.30)'});
+        this.heartbeatChart.addTimeSeries(this.lineHeartbeatLow,  {strokeStyle:'#98a3ff'});
+        this.heartbeatChart.addTimeSeries(this.lineHeartbeatMid,  {strokeStyle:'#fff6a5'});
+        this.heartbeatChart.addTimeSeries(this.lineHeartbeatHigh,  {strokeStyle:'#ff9898'});
 
         // The clock
         setInterval(this.setTime.bind(null, this.dspTime), 1000);
@@ -104,6 +130,33 @@ class QuillPedalPi {
 
         o.line1.append(new Date().getTime(), speed);
         o.line2.append(new Date().getTime(), o.avs);
+
+        o.updateHeartbeat(o);
+    }
+
+    updateHeartbeat(o) {
+        let heartbeat = o.fakeHeartbeat(o);
+        let bpmClass = '';
+
+        if (heartbeat <= 100) {
+            bpmClass = 'low';
+        } else if (heartbeat <= 150) {
+            bpmClass = 'mid';
+        } else {
+            bpmClass = 'high';
+        }
+
+        o.lineHeartbeat.append(new Date().getTime(), heartbeat);
+        o.lineHeartbeatLow.append(new Date().getTime(), 55);
+        o.lineHeartbeatMid.append(new Date().getTime(), 100);
+        o.lineHeartbeatHigh.append(new Date().getTime(), 150);
+        o.dspBpm.html(heartbeat);
+        o.iconBpm.attr('class',
+            function(i, c){
+                return c.replace(/(^|\s)bpm-\S+/g, '');
+            });
+        o.iconBpm.addClass('bpm-' + bpmClass);
+
     }
 
     switchMode(mode) {
@@ -151,6 +204,36 @@ class QuillPedalPi {
 
         return speed;
     }
+
+    fakeHeartbeat(o) {
+        // @todo dummy...
+        let op = Math.floor(Math.random() * 2);
+        let add = Math.floor(Math.random() * 7);
+
+        o.bpm = op ? o.bpm + add : o.bpm - add;
+
+        if (o.bpm < 50) {
+            o.bpm = 50;
+        }
+
+        if (o.bpm > 170) {
+            o.bpm = 170;
+        }
+
+        return o.bpm;
+    }
+
+    initPage(digVersion) {
+        $.ajax({
+            url: 'qpp.php',
+            success: function(data) {
+                digVersion.html(data.version.substring(0, 7));
+            },
+            error: function() {
+                alert('An error occurred');
+            }
+        });
+    }
 }
 
 //------
@@ -175,6 +258,9 @@ let qpp = new QuillPedalPi(
     $('#gauge-speed'),
     $('#dig-avs'),
     $('#dig-mxs'),
-    $('#dig-dst')
-    )
-;
+    $('#dig-dst'),
+    $('#dig-bpm'),
+    $('#icon-bpm')
+    );
+
+qpp.initPage($('#dig-version'));

@@ -12,7 +12,7 @@ class Stopwatch {
     }
 
     reset() {
-        this.times = [ 0, 0, 0 ];
+        this.times = [0, 0, 0];
     }
 
     start() {
