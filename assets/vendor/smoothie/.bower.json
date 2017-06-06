@@ -42,7 +42,6 @@
     "commit": "406ccf525a99239c53ad96c8370e4f6385f350a8"
   },
   "_source": "https://github.com/joewalnes/smoothie.git",
-  "_target": "^1.29.1",
-  "_originalSource": "smoothie",
-  "_direct": true
+  "_target": "^1.29",
+  "_originalSource": "smoothie"
 }

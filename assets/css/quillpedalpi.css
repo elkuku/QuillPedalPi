@@ -23,6 +23,7 @@ body {
 .unit {
     font-size: 0.7em;
 }
+
 ul.travel-list {
     text-align: left;
     list-style: none;
@@ -31,6 +32,7 @@ ul.travel-list {
 div.stopwatch {
     font-size: 1.5em;
 }
+
 ul.results {
     font-size: 0.8em;
     max-height: 150px;
@@ -50,4 +52,9 @@ ul.results {
 
 .bpm-high {
     color: #af581f;
+}
+
+#map {
+    width: 230px;
+    height: 170px;
 }

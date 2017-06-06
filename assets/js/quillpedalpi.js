@@ -168,7 +168,9 @@ class QuillPedalPi {
 
         $('#panel-' + this.modes[mode]).show();
         $('#buttons-' + this.modes[mode]).show();
+
         $('#mode-' + mode).addClass('glow');
+
         this.mode = mode;
     }
 
@@ -252,15 +254,3 @@ $('#closeThis').on('click', function () {
     window.close();
 });
 
-let qpp = new QuillPedalPi(
-    ['Travel', 'Stopw', 'Cam'],
-    $('#dateTime'),
-    $('#gauge-speed'),
-    $('#dig-avs'),
-    $('#dig-mxs'),
-    $('#dig-dst'),
-    $('#dig-bpm'),
-    $('#icon-bpm')
-    );
-
-qpp.initPage($('#dig-version'));

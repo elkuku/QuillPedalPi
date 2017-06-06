@@ -14,6 +14,8 @@
     <!-- Bootstrap core CSS -->
     <link href="assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="assets/vendor/leaflet/dist/leaflet.css" />
+
     <!-- Custom styles for this template -->
     <link href="assets/css/quillpedalpi.css" rel="stylesheet">
     <link href="assets/css/quillpedalpi-dark.css" rel="stylesheet" id="dark-css">
@@ -21,13 +23,14 @@
 
 <body>
 
-<table width="100%" border="0">
+<table width="100%" border="1">
     <tr>
-        <td colspan="3" class="text-center">
+        <td colspan="2" class="text-center">
             <div class="pull-left">
                 <span class="glyphicon glyphicon-send" id="mode-0" onmousedown="qpp.switchMode(0)"></span>
                 <span class="glyphicon glyphicon-time" id="mode-1" onmousedown="qpp.switchMode(1)"></span>
                 <span class="glyphicon glyphicon-camera" id="mode-2" onmousedown="qpp.switchMode(2)"></span>
+                <span class="glyphicon glyphicon-globe" id="mode-3" onmousedown="qpp.switchMode(3)"></span>
             </div>
             <span id="dateTime">00:00:00</span>
             <div class="pull-right">
@@ -37,8 +40,8 @@
             </div>
         </td>
     </tr>
-    <tr>
-        <td id="gauge-speed" class="gauge-speed" width="230px" onmousedown="qpp.changeMode()" rowspan="2">
+    <tr id="row-display">
+        <td id="gauge-speed" class="gauge-speed" width="230px" onmousedown="qpp.changeMode()">
             00
         </td>
         <td valign="top" class="text-center">
@@ -50,6 +53,11 @@
                     <li><span class="glyphicon glyphicon-heart" id="icon-bpm"></span> <span id="dig-bpm">00.00</span> <span class="unit">Bpm</span></li>
                 </ul>
                 <canvas id="heartbeat-chart" width="250" height="30"></canvas>
+                <div id="buttons-Travel">
+                    <div onClick="qpp.start()" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
+                    <div onClick="qpp.stop()" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
+                    <div onclick="qpp.reset()" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
+                </div>
             </div>
             <div id="panel-Stopw">
                 <table width="100%" border="0">
@@ -67,34 +75,33 @@
                         </td>
                     </tr>
                 </table>
+                <div id="buttons-Stopw">
+                    <div onClick="stopwatch.start();" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
+                    <div onClick="stopwatch.lap();" class="btn btn-default btn-lg glyphicon glyphicon-flag"></div>
+                    <div onClick="stopwatch.stop();" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
+                    <div onClick="stopwatch.restart();" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
+                </div>
             </div>
             <div id="panel-Cam" class="center-block">
                 <img src="assets/img/road.jpg" width="230" height="170"/>
+                <div id="buttons-Cam">
+                    <div class="btn btn-default btn-lg glyphicon glyphicon-camera"></div>
+                    <div class="btn btn-default btn-lg glyphicon glyphicon-facetime-video"></div>
+                    <div class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
+                </div>
+            </div>
+            <div id="panel-Map" class="center-block">
+                <div id="map"></div>
+                <div id="buttons-Map">
+                    <div class="btn btn-default btn-lg glyphicon glyphicon-camera"></div>
+                    <div class="btn btn-default btn-lg glyphicon glyphicon-facetime-video"></div>
+                    <div class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
+                </div>
             </div>
         </td>
     </tr>
     <tr>
-        <td class="text-center">
-            <div id="buttons-Travel">
-                <div onClick="qpp.start()" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
-                <div onClick="qpp.stop()" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
-                <div onclick="qpp.reset()" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
-            </div>
-            <div id="buttons-Stopw">
-                <div onClick="stopwatch.start();" class="btn btn-default btn-lg glyphicon glyphicon-play"></div>
-                <div onClick="stopwatch.lap();" class="btn btn-default btn-lg glyphicon glyphicon-flag"></div>
-                <div onClick="stopwatch.stop();" class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
-                <div onClick="stopwatch.restart();" class="btn btn-default btn-lg glyphicon glyphicon-repeat"></div>
-            </div>
-            <div id="buttons-Cam">
-                <div class="btn btn-default btn-lg glyphicon glyphicon-camera"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-facetime-video"></div>
-                <div class="btn btn-default btn-lg glyphicon glyphicon-stop"></div>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
+        <td colspan="2">
             <canvas id="speed-chart" width="480" height="50"></canvas>
         </td>
     </tr>
@@ -123,8 +130,27 @@
 <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
 <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="assets/vendor/smoothie/smoothie.js"></script>
+<script src="assets/vendor/leaflet/dist/leaflet.js"></script>
+<script src="assets/js/leafletembed.js"></script>
 <script src="assets/js/quillpedalpi.js"></script>
 <script src="assets/js/stopwatch.js"></script>
+<script>
+    let qpp = new QuillPedalPi(
+        ['Travel', 'Stopw', 'Cam', 'Map'],
+        $('#dateTime'),
+        $('#gauge-speed'),
+        $('#dig-avs'),
+        $('#dig-mxs'),
+        $('#dig-dst'),
+        $('#dig-bpm'),
+        $('#icon-bpm')
+    );
+
+    qpp.initPage($('#dig-version'));
+
+    initmap();
+
+</script>
 </body>
 </html>
 

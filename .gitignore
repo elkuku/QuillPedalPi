@@ -1,1 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
+
+assets/vendor/bootstrap/fonts
+assets/vendor/bootstrap/grunt
+assets/vendor/bootstrap/js
+assets/vendor/bootstrap/less
+assets/vendor/bootstrap/nuget
+assets/vendor/jquery/src
+assets/vendor/leaflet/docs
