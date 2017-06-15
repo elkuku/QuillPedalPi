@@ -7,3 +7,5 @@ assets/vendor/bootstrap/less
 assets/vendor/bootstrap/nuget
 assets/vendor/jquery/src
 assets/vendor/leaflet/docs
+
+heartbeat.txt

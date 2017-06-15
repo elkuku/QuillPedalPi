@@ -19,6 +19,8 @@ class QuillPedalPi {
 
         this.bpm = 150;
 
+        this.demo = true;
+
         // Chart
         // http://smoothiecharts.org/builder
         this.line1 = new TimeSeries();
@@ -36,7 +38,7 @@ class QuillPedalPi {
             labels: {fillStyle:'#787474', precision: 0}
         });
 
-        this.speedChart.streamTo(document.getElementById('speed-chart'), 500);
+        this.speedChart.streamTo(document.getElementById('speed-chart'), 1000);
         this.speedChart.addTimeSeries(this.line1,
             {strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(177,223,170,0.30)', lineWidth: 1});
         this.speedChart.addTimeSeries(this.line2,
@@ -58,7 +60,7 @@ class QuillPedalPi {
         this.lineHeartbeatMid = new TimeSeries();
         this.lineHeartbeatHigh = new TimeSeries();
 
-        this.heartbeatChart.streamTo(document.getElementById('heartbeat-chart'), 500);
+        this.heartbeatChart.streamTo(document.getElementById('heartbeat-chart'), 1000);
         this.heartbeatChart.addTimeSeries(this.lineHeartbeat,  {lineWidth:2,strokeStyle:'#00ff00', fillStyle: 'rgba(177,223,170,0.30)'});
         this.heartbeatChart.addTimeSeries(this.lineHeartbeatLow,  {strokeStyle:'#98a3ff'});
         this.heartbeatChart.addTimeSeries(this.lineHeartbeatMid,  {strokeStyle:'#fff6a5'});
@@ -84,7 +86,7 @@ class QuillPedalPi {
 
     start() {
         if (!this.running) {
-            this.timerId = setInterval(this.update.bind(null, this), 500);
+            this.timerId = setInterval(this.update.bind(null, this), 1000);
             this.running = true;
         }
     }
@@ -108,7 +110,7 @@ class QuillPedalPi {
         }
 
         if (speed > 0) {
-            o.dst += speed / 7200
+            o.dst += speed / 3600
         }
 
         let sum = 0, length = o.measures.length;
@@ -131,11 +133,11 @@ class QuillPedalPi {
         o.line1.append(new Date().getTime(), speed);
         o.line2.append(new Date().getTime(), o.avs);
 
-        o.updateHeartbeat(o);
+        o.getHeartbeat(o);
     }
 
     updateHeartbeat(o) {
-        let heartbeat = o.fakeHeartbeat(o);
+        let heartbeat = o.bpm;
         let bpmClass = '';
 
         if (heartbeat <= 100) {
@@ -223,6 +225,20 @@ class QuillPedalPi {
         }
 
         return o.bpm;
+    }
+
+    getHeartbeat(o) {
+        $.ajax({
+            url: 'heartbeat.txt',
+            success: function(data) {
+                data = $.parseJSON(data);
+                o.bpm = data.heartbeat;
+                o.updateHeartbeat(o);
+            },
+            error: function() {
+                alert('An error occurred');
+            }
+        });
     }
 
     initPage(digVersion) {
