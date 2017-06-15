@@ -1,5 +1,5 @@
 class QuillPedalPi {
-    constructor(modes, dspTime, dspSpeed, dspAvs, dspMxs, dspDst, dspBpm, iconBpm) {
+    constructor(modes, dspMessage, dspTime, dspSpeed, dspAvs, dspMxs, dspDst, dspBpm, iconBpm) {
         this.running = false;
         this.timerId = null;
         this.measures = [];
@@ -10,6 +10,7 @@ class QuillPedalPi {
         this.modes = modes;
         this.mode = 0;
         this.dspTime = dspTime;
+        this.dspMessage = dspMessage;
         this.dspSpeed = dspSpeed;
         this.dspAvs = dspAvs;
         this.dspMxs = dspMxs;
@@ -19,7 +20,7 @@ class QuillPedalPi {
 
         this.bpm = 150;
 
-        this.demo = true;
+        this.demo = false;
 
         // Chart
         // http://smoothiecharts.org/builder
@@ -35,7 +36,7 @@ class QuillPedalPi {
                 verticalSections: 0,
                 borderVisible: false
             },
-            labels: {fillStyle:'#787474', precision: 0}
+            labels: {fillStyle: '#787474', precision: 0}
         });
 
         this.speedChart.streamTo(document.getElementById('speed-chart'), 1000);
@@ -52,7 +53,7 @@ class QuillPedalPi {
                 verticalSections: 0,
                 borderVisible: false
             },
-            labels: {fillStyle:'#787474', precision: 0}
+            labels: {fillStyle: '#787474', precision: 0}
         });
 
         this.lineHeartbeat = new TimeSeries();
@@ -61,10 +62,14 @@ class QuillPedalPi {
         this.lineHeartbeatHigh = new TimeSeries();
 
         this.heartbeatChart.streamTo(document.getElementById('heartbeat-chart'), 1000);
-        this.heartbeatChart.addTimeSeries(this.lineHeartbeat,  {lineWidth:2,strokeStyle:'#00ff00', fillStyle: 'rgba(177,223,170,0.30)'});
-        this.heartbeatChart.addTimeSeries(this.lineHeartbeatLow,  {strokeStyle:'#98a3ff'});
-        this.heartbeatChart.addTimeSeries(this.lineHeartbeatMid,  {strokeStyle:'#fff6a5'});
-        this.heartbeatChart.addTimeSeries(this.lineHeartbeatHigh,  {strokeStyle:'#ff9898'});
+        this.heartbeatChart.addTimeSeries(this.lineHeartbeat, {
+            lineWidth: 2,
+            strokeStyle: '#00ff00',
+            fillStyle: 'rgba(177,223,170,0.30)'
+        });
+        this.heartbeatChart.addTimeSeries(this.lineHeartbeatLow, {strokeStyle: '#98a3ff'});
+        this.heartbeatChart.addTimeSeries(this.lineHeartbeatMid, {strokeStyle: '#fff6a5'});
+        this.heartbeatChart.addTimeSeries(this.lineHeartbeatHigh, {strokeStyle: '#ff9898'});
 
         // The clock
         setInterval(this.setTime.bind(null, this.dspTime), 1000);
@@ -154,7 +159,7 @@ class QuillPedalPi {
         o.lineHeartbeatHigh.append(new Date().getTime(), 150);
         o.dspBpm.html(heartbeat);
         o.iconBpm.attr('class',
-            function(i, c){
+            function (i, c) {
                 return c.replace(/(^|\s)bpm-\S+/g, '');
             });
         o.iconBpm.addClass('bpm-' + bpmClass);
@@ -228,27 +233,33 @@ class QuillPedalPi {
     }
 
     getHeartbeat(o) {
-        $.ajax({
-            url: 'heartbeat.txt',
-            success: function(data) {
-                data = $.parseJSON(data);
-                o.bpm = data.heartbeat;
-                o.updateHeartbeat(o);
-            },
-            error: function() {
-                alert('An error occurred');
-            }
-        });
+        if (o.demo) {
+            o.bpm = o.fakeHeartbeat(o);
+            o.updateHeartbeat(o);
+        } else {
+            $.ajax({
+                url: 'heartbeat.txt',
+                success: function (data) {
+                    data = $.parseJSON(data);
+                    o.bpm = data.heartbeat;
+                    o.updateHeartbeat(o);
+                },
+                error: function () {
+                    o.dspMessage.html('i/o error');
+                }
+            });
+        }
     }
 
     initPage(digVersion) {
+        let o = this;
         $.ajax({
             url: 'qpp.php',
-            success: function(data) {
+            success: function (data) {
                 digVersion.html(data.version.substring(0, 7));
             },
-            error: function() {
-                alert('An error occurred');
+            error: function () {
+                o.dspMessage.html('i/o error v-file');
             }
         });
     }

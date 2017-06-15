@@ -58,3 +58,11 @@ ul.results {
     width: 230px;
     height: 170px;
 }
+
+#flashMessage {
+    color: #ff3b47;
+    font-size: 0.7em;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+}
